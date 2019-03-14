@@ -17,6 +17,7 @@ class Jda(object):
         self.jdaEng=jdaEng
 
     def JDA(self, Xs, Xt, Ys, Yt0):
+        # set predefined variables
         Xs = np.matrix(Xs)
         Xt = np.matrix(Xt)
         print(Xs.shape)
@@ -45,7 +46,7 @@ class Jda(object):
                 #e[np.where(np.isinf(e))[0]] = 0
                     + e * np.transpose(e)
 
-        # build centering matrix
+        # construct centering matrix
         M = M / np.linalg.norm(M, 'fro')
         H = np.eye(n) - 1. / (n * np.ones((n,n)))
 
@@ -56,6 +57,7 @@ class Jda(object):
         f2 = X * H * X.transpose()
         f1 = matlab.double(f1.tolist())
         f2 = matlab.double(f2.tolist())
+        # Joint Distribution Adaptation
         A, D = self.jdaEng.eigs(f1, f2, self.jdaParK, 'SM', nargout=2)
         A = np.matrix(A)
         Z = A.transpose() * X
