@@ -10,6 +10,7 @@ import matlab.engine
 
 class Jda(object):
     def __init__(self, jdaParK, jdaParLambda, jdaParGamma, jdaParIt, jdaEng):
+        # set predefined parameters
         self.jdaParK = jdaParK
         self.jdaParLambda = jdaParLambda
         self.jdaParGamma = jdaParGamma
@@ -17,7 +18,6 @@ class Jda(object):
         self.jdaEng=jdaEng
 
     def JDA(self, Xs, Xt, Ys, Yt0):
-        # set predefined variables
         Xs = np.matrix(Xs)
         Xt = np.matrix(Xt)
         print(Xs.shape)
